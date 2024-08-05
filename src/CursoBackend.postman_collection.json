@@ -1,0 +1,474 @@
+{
+	"info": {
+		"_postman_id": "911887fd-f18b-40b8-8caa-bf3a18efb19d",
+		"name": "CursoBackend",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "23629825"
+	},
+	"item": [
+		{
+			"name": "Get All Products",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/api/products",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"products"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Products with params",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/api/products?limit=1",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"products"
+					],
+					"query": [
+						{
+							"key": "limit",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Products for ID (/:pid)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/api/products/2",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"products",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST Product",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "title",
+							"value": "producto 5",
+							"type": "text"
+						},
+						{
+							"key": "description",
+							"value": "Descripcion Producto 5",
+							"type": "text"
+						},
+						{
+							"key": "code",
+							"value": "P0005",
+							"type": "text"
+						},
+						{
+							"key": "price",
+							"value": "500",
+							"type": "text"
+						},
+						{
+							"key": "stock",
+							"value": "50",
+							"type": "text"
+						},
+						{
+							"key": "category",
+							"value": "Categoria5",
+							"type": "text"
+						},
+						{
+							"key": "Thumbnail",
+							"type": "file",
+							"src": "/C:/ImagesToUpload/variador-de-velocidad.jpg"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:8080/api/products",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"products"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PUT  Product for Id (/:pid)",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "title",
+							"value": "producto 1 nuevossss",
+							"type": "text"
+						},
+						{
+							"key": "description",
+							"value": "Descripcion Producto 1ssssssssss",
+							"type": "text"
+						},
+						{
+							"key": "code",
+							"value": "P0004",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "price",
+							"value": "400",
+							"type": "text"
+						},
+						{
+							"key": "stock",
+							"value": "500",
+							"type": "text"
+						},
+						{
+							"key": "category",
+							"value": "Categoria4",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "Thumbnail",
+							"type": "file",
+							"src": "/C:/ImagesToUpload/plcs.JPG",
+							"disabled": true
+						},
+						{
+							"key": "code",
+							"value": "P0002",
+							"type": "text"
+						},
+						{
+							"key": "status",
+							"value": "true",
+							"type": "text"
+						},
+						{
+							"key": "description",
+							"value": "cambio producto 1 de nuevo",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:8080/api/products/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"products",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE Product for ID (/:pid)",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/api/products/3",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"products",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST Carts",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/api/carts",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"carts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GETS Carts for ID (/:cid)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/api/carts/6515db1bfa1e2ffe67192722",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"carts",
+						"6515db1bfa1e2ffe67192722"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST products to cart (:cid/product/:pid)",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/api/carts/6515db1bfa1e2ffe67192722/product/651465209594c9ac4bf291bf",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"carts",
+						"6515db1bfa1e2ffe67192722",
+						"product",
+						"651465209594c9ac4bf291bf"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE Producto del Cart  for ID de producto (/:cid/products/:pid)",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/api/carts/6515db1bfa1e2ffe67192722/product/651465209594c9ac4bf291bf",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"carts",
+						"6515db1bfa1e2ffe67192722",
+						"product",
+						"651465209594c9ac4bf291bf"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE Productos del Cart  for ID de cart (/:cid)",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/api/carts/6515db1bfa1e2ffe67192722",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"carts",
+						"6515db1bfa1e2ffe67192722"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PUT api/carts/:cid/products/:pid - actualizar cantidad de productos por req.body",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/api/carts/6515db1bfa1e2ffe67192722/product/6515dc862829286a81dbab2f/25",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"carts",
+						"6515db1bfa1e2ffe67192722",
+						"product",
+						"6515dc862829286a81dbab2f",
+						"25"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Registro Usuario",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"first_name\":\"Oscar\",\r\n    \"last_name\":\"Miranda\",\r\n    \"email\": \"om@gmail.com\",\r\n    \"age\":45,\r\n    \"password\": \"3333\",\r\n    \"role\":\"user\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/api/session/register",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"session",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login Usuario",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"om@gmail.com\",\r\n    \"password\": \"3333\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/api/session/login",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"session",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Usuario logueado",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n     \"email\": \"ogaldames67@gmail.com\",\r\n     \"password\": \"1234\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/api/session/current",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"session",
+						"current"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
