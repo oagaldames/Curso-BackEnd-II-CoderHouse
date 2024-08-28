@@ -1,4 +1,4 @@
-import { cartsModel } from "../dbManagers/models/cart.model.js";
+import { cartsModel } from "./models/cart.model.js";
 
 class CartManager {
   constructor() {
@@ -49,13 +49,8 @@ class CartManager {
     return updatedCart;
   }
 
-  async updateProductsToCart(cartId, products) {
-    const updatedCart = await cartsModel.updateOne(
-      { _id: cartId },
-      {
-        products: products,
-      }
-    );
+  async updateProductsToCart(cartId, data) {
+    const updatedCart = await cartsModel.findByIdAndUpdate(cartId, data, { new: true });
     return updatedCart;
   }
 }

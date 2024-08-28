@@ -2,6 +2,7 @@ import { Router } from "express";
 import passport from "passport";
 import { createToken } from "../utils/jwt.js";
 import { passportCall } from "../middlewares/passport.middleware.js";
+import {userDto} from "../dto/user.dto.js"
 
 const router = Router();
 
@@ -19,7 +20,7 @@ router.post("/login", passportCall("login"), async (req, res) => {
     const token = createToken(req.user);
 
     res.cookie("token", token, { httpOnly: true });
-    return res.status(200).json({ status: "ok", payload: req.user });
+    return res.status(200).json({ status: "ok", payload: userDto(req.user) });
   } catch (error) {
     console.log(error);
     res.status(500).json({ status: "error", msg: "Internal server error" });
@@ -28,7 +29,7 @@ router.post("/login", passportCall("login"), async (req, res) => {
 
 router.get("/current", passportCall("jwt"), async (req, res) => {
 try {
-  res.status(200).json({ status: "ok", user: req.user });
+  res.status(200).json({ status: "ok", user: userDto(req.user) });
 } catch (error) {
   console.log(error);
   res.status(500).json({ status: "error", msg: "Internal server error" });

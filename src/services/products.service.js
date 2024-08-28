@@ -1,6 +1,6 @@
 //Servicios para encapsular logicas de negocio y aplicacion de reglas para productos
 
-import ProductManager from "../dao/dbManagers/products.manager.js";
+import ProductManager from "../persistence/dbManagers/products.repository.js";
 
 const productManager = new ProductManager();
 

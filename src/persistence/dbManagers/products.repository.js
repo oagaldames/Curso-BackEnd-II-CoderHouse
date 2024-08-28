@@ -1,4 +1,4 @@
-import { productsModel} from "../dbManagers/models/product.model.js"
+import { productsModel} from "./models/product.model.js"
 
 class ProductManager {
   constructor() {
@@ -78,14 +78,7 @@ class ProductManager {
   }
 
   async updateProduct(id, dataUpdate) {
-        const updatedProduct = await productsModel.updateOne(
-        { _id: id },
-        {
-          ...dataUpdate,
-          //$push: { thumbnail: { $each: pathFile } },
-        }
-      );
-
+      const updatedProduct = await productsModel.findByIdAndUpdate(id, dataUpdate, { new: true });
       return updatedProduct;
     
   }

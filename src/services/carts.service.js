@@ -1,8 +1,10 @@
 //Servicios para encapsular logicas de negocio y aplicacion de reglas para carritos
 
-import CartManager from "../dao/dbManagers/carts.manager.js";
+import CartManager from "../persistence/dbManagers/carts.repository.js";
+import ProductManager from "../persistence/dbManagers/products.repository.js";
 
 const cartManager = new CartManager();
+const productManager = new ProductManager();
 
 //Agregar un nuevo carrito
 const addCartService = async () => {
@@ -87,6 +89,29 @@ const deleteAllProductsCartService = async (cid) => {
     }
 };
 
+const purchaseCartService = async (cid) => {
+    
+    const cart = await cartManager.getCartById(cid);
+    let total = 0;
+    const productsWithOutStock = [];
+
+    for (const productCart of cart.products) {
+        const product = await productManager.getProductById(productCart.product);
+        if (product.stock >= productCart.quantity) {
+            total += product.price * productCart.quantity;
+            await productManager.updateProduct(product._id, {stock: product.stock - productCart.quantity})
+        } else {
+            productsWithOutStock.push(productCart);
+        }
+
+        await cartManager.updateProductsToCart(cid, { products: productsWithOutStock });
+    }
+
+    return total;
+};
+
+
+
 export {
     getCartByIdService,
     addCartService,
@@ -94,4 +119,5 @@ export {
     updateProductQuantityService,
     deleteProductCartService,
     deleteAllProductsCartService,
+    purchaseCartService,
 };

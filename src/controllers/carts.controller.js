@@ -8,9 +8,12 @@ import {
     updateProductQuantityService,
     deleteProductCartService,
     deleteAllProductsCartService,
+    purchaseCartService,
 } from "../services/carts.service.js";
 
-import ProductManager from "../dao/dbManagers/products.manager.js";
+import {createTicketService} from "../services/ticket.service.js";
+
+import ProductManager from "../persistence/dbManagers/products.repository.js";
 const productManager = new ProductManager();
 
 //Función para agregar un nuevo carrito
@@ -121,6 +124,22 @@ const deleteAllProductsCartController = async (req, res) => {
     }
 };
 
+const purchaseCartController = async (req = request, res = response) => {
+    try {
+        const { cid } = req.params;
+        const total = await purchaseCartService(cid);
+        const ticket = await createTicketService(req.user.email, total);
+
+        res.status(200).json({ status: "success", ticket });
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ status: "Erro", msg: "Error interno del servidor" });
+    }
+};
+
+
+
+
 export {
     addCartController,
     getCartByIdController,
@@ -128,4 +147,5 @@ export {
     updateProductQuantityController,
     deleteProductCartController,
     deleteAllProductsCartController,
+    purchaseCartController,
 };

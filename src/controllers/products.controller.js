@@ -10,7 +10,6 @@ import {
     deleteProductService,
 } from "../services/products.service.js";
 
-
 //Función para traer todos los productos
 const getAllProductController = async (req, res) => {
     try {

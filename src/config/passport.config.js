@@ -4,11 +4,16 @@ import jwt from "passport-jwt";
 import local from "passport-local";
 import passportCustom from "passport-custom";
 import { addCartService} from "../services/carts.service.js";
-import userDao from "../dao/dbManagers/users.manager.js";
+//import userDao from "../dao/dbManagers/users.manager.js";
 import { cookieExtractor } from "../utils/cookieExtractor.js";
 import { createHash, isValidPassword } from "../utils/hashPassword.js";
 import envs from "./envs.config.js";
 import { verifyToken } from "../utils/jwt.js";
+import cartRepository from "../persistence/dbManagers/carts.repository.js";
+import userRepository from "../persistence/dbManagers/users.repository.js";
+
+
+
 
 const LocalStrategy = local.Strategy;
 const JWTStrategy = jwt.Strategy;
@@ -22,7 +27,7 @@ export const initializePassport = () => {
       try {
         const { first_name, last_name, age } = req.body;
         
-        const user = await userDao.getByEmail(username);
+        const user = await userRepository.getByEmail(username);
         if (user) return done(null, false, { message: "User already exists" });
         
         const cart = await addCartService();
@@ -35,7 +40,7 @@ export const initializePassport = () => {
           cart: cart._id
         };
 
-        const userCreate = await userDao.create(newUser);
+        const userCreate = await userRepository.create(newUser);
 
         return done(null, userCreate);
       } catch (error) {
@@ -48,7 +53,7 @@ export const initializePassport = () => {
     "login",
     new LocalStrategy({ usernameField: "email" }, async (username, password, done) => {
       try {
-        const user = await userDao.getByEmail(username);
+        const user = await userRepository.getByEmail(username);
         
         if (!user || !isValidPassword(user.password, password)) return done(null, false, {message: "User or email invalid"});
         return done(null, user);
@@ -57,8 +62,6 @@ export const initializePassport = () => {
       }
     })
   );
-
-
 
   passport.use(
     "jwt",
@@ -75,5 +78,38 @@ export const initializePassport = () => {
       }
     )
   )
+
+  passport.use(
+    "current",
+    new CustomStrategy(
+      async (req, done) => {
+        try {
+
+          const token = cookieExtractor(req);
+          if(!token) return done(null, false);
+          const tokenVerify = verifyToken(token);
+          if(!tokenVerify) return done(null, false);
+          const user = await userRepository.getByEmail(tokenVerify.email)
+          done(null, user);
+          
+        } catch (error) {
+          done(error)
+        }
+      }
+    )
+  )
+
+  passport.serializeUser((user, done) => {
+    done(null, user._id);
+  });
+
+  passport.deserializeUser(async (id, done) => {
+    try {
+      const user = await userRepository.getById(id);
+      done(null, user);
+    } catch (error) {
+      done(error);
+    }
+  });
 
 }
