@@ -280,8 +280,17 @@
 			"request": {
 				"method": "POST",
 				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
 				"url": {
-					"raw": "localhost:8080/api/carts/6515db1bfa1e2ffe67192722/product/651465209594c9ac4bf291bf",
+					"raw": "localhost:8080/api/carts/66b11b6e55a00defef5950f3/product/6675975e1e964139f1b3fd6b",
 					"host": [
 						"localhost"
 					],
@@ -289,9 +298,9 @@
 					"path": [
 						"api",
 						"carts",
-						"6515db1bfa1e2ffe67192722",
+						"66b11b6e55a00defef5950f3",
 						"product",
-						"651465209594c9ac4bf291bf"
+						"6675975e1e964139f1b3fd6b"
 					]
 				}
 			},
@@ -416,7 +425,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"email\": \"om@gmail.com\",\r\n    \"password\": \"3333\"\r\n}",
+					"raw": "{\r\n    \"email\": \"jp67@gmail.com\",\r\n    \"password\": \"1111\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -465,6 +474,39 @@
 						"api",
 						"session",
 						"current"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET Purchase cart (:/:cid/purchase)",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/api/carts/66b11b6e55a00defef5950f3/purchase",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"carts",
+						"66b11b6e55a00defef5950f3",
+						"purchase"
 					]
 				}
 			},
